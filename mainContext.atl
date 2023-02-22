@@ -1,0 +1,131 @@
+module HAZOPContext;
+create OUT: eventbcore from IN: UML;
+
+
+helper def : counter : Integer = 1;
+
+-- ---------------------------------------------------------------------------------------------------------------------------------
+-- ASM: 1)There is at least one signal 2)The names of signals are unique.
+-- Creates a set containing different phases in the interaction. For each signal two phases are defined using Sig2Constant rule.
+entrypoint rule InteractionPhases(){ 
+	using {
+		gw: String='';
+		GuideWords: Set(String)= Set{};
+	}
+	to
+		set: eventbcore!CarrierSet(
+			name <- 'Phases'
+			),
+		axiom: eventbcore!Axiom(
+			name <- 'axm'+thisModule.counter.toString(),
+			predicate <-'partition(Phases'
+			),
+		guidewords: eventbcore!CarrierSet(
+			name <- 'guidewords'),
+		axiomGuidewords: eventbcore!Axiom(
+			name <- 'axm'+ (thisModule.counter +1).toString(),
+			predicate <- 'partition(guidewords'
+			)
+	do{
+		thisModule.counter <- thisModule.counter+2;
+		for (sig in UML!Signal.allInstances()){
+			axiom.predicate <- axiom.predicate + ',{r_' +  sig.name+ '}'+ ',{s_' + sig.name + '}';
+			thisModule.Signal2Constant(sig);
+		}
+		axiom.predicate <- axiom.predicate +')';
+			
+		for (fragment in UML!CombinedFragment.allInstances()){
+			for (opr in fragment.operand){
+				if ( not opr.guard.oclIsUndefined() ){
+					if (opr.guard.specification.body.at(1).trim().startsWith('guideword')){
+					gw <- opr.guard.specification.body.at(1).trim().regexReplaceAll('guideword(\\S*)==(\\s*)', '');
+					gw <- gw.trim();
+					gw <- gw.substring(2, gw.size()-1);
+					GuideWords <- GuideWords.including(gw);
+					}
+				}
+			}
+		}
+		for (w in GuideWords){
+			axiomGuidewords.predicate <- axiomGuidewords.predicate + ',{' +  w + '}';
+		}
+		axiomGuidewords.predicate <- axiomGuidewords.predicate + ')';
+	}
+}
+
+
+lazy rule Signal2Constant{
+	from 
+		sig : UML!Signal
+	to
+		constant1 : eventbcore! Constant (
+			name <- 'r_' +  sig.name 
+			),	
+		constant2 : eventbcore! Constant (
+			name <- 's_' + sig.name
+			)	
+}
+-- -----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+-- ----------------------------------------------------------------------------------------------------------------------------------
+-- Properties of signlas are mapped to constants
+rule property2constant{
+	from
+		property: UML!Property ( property.refImmediateComposite().oclIsTypeOf(UML!Signal) )
+	to
+		constant: eventbcore!Constant(
+			name <-property.refImmediateComposite().name+'_' + property.name
+			)
+}
+
+-- ASM: 1) A signals must be named.
+-- This creates a set for each signal containing the properties of the signal.
+rule signal2Set {
+	from
+		signal : UML!Signal ((signal.ownedAttribute).notEmpty())
+
+	to
+		set : eventbcore!CarrierSet(
+			name <- signal.name	
+			),
+		
+		axiom : eventbcore!Axiom(
+			predicate <-'partition(' + signal.name,
+			name <- 'axm'+thisModule.counter.toString()
+			)
+	do{
+		thisModule.counter <- thisModule.counter+1;
+		for ( pro in signal.ownedAttribute ) {
+			axiom.predicate <- axiom.predicate + ',{' + thisModule.resolveTemp(pro,'constant').name + '}';
+			}
+		axiom.predicate <- axiom.predicate +')';
+	}	
+}
+-- --------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+endpoint rule creatingcontext() {
+
+	to
+		c : eventbcore!Context (
+			name <-  'Interaction Context'
+			)
+	do{
+		for(e in eventbcore!Constant.allInstances()){
+			c.constants <- e;
+		}
+		for(e in eventbcore!CarrierSet.allInstances()){
+			c.sets <- e;
+		}
+		for (ax in eventbcore!Axiom.allInstances() ){
+		c.axioms <- ax;
+		}
+	}
+
+
+}
