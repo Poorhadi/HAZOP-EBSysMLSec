@@ -93,6 +93,7 @@ lazy rule AttackGuard{ -- need to develop.
 		attCounter: Integer
 	using{
 			gw:String='';
+			noAttackpara: String ='';
 	}
 	to
 		g1: eventbcore!Guard(
@@ -100,6 +101,20 @@ lazy rule AttackGuard{ -- need to develop.
 			predicate <-  '(attack=NoAttack => ' + 'par_'+property + '= '+ 'message_' + signal + '('+signal+'_' + property+'))'
 			)
 	do{
+		for (opr in fr.operand){
+			if ( not opr.guard.oclIsUndefined() ){
+				if (opr.guard.specification.body.at(1).trim().startsWith('guideword')){
+					if (opr.guard.specification.body.at(1).trim().regexReplaceAll('guideword(\\S*)==(\\s*)', '').trim()='\'NoAttack\''){
+						if (opr.fragment->exists(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)) ) {
+							noAttackpara <- opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim();
+						}
+						
+					}
+				}
+			}
+		}
+		
+		
 		for (opr in fr.operand){
 			if ( not opr.guard.oclIsUndefined() ){
 				if (opr.guard.specification.body.at(1).trim().startsWith('guideword')){
@@ -111,10 +126,12 @@ lazy rule AttackGuard{ -- need to develop.
 					if (opr.fragment->exists(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)) ) {
 						if (opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim()='att_'+property ){
 							g1.predicate <- g1.predicate + '&' + '(guideword=Less => ' + 'par_'+property + ' < '+ 'message_' + signal + '('+signal+'_' + property+'))';
-						}else{ -- need to be completed.
-							--g1.predicate <- g1.predicate + '&'+ '(guideword=Less => ' + 'par_'+property + '= ' + 
-								--	opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim().regexReplaceAll(
-									--	fr.operand.at(1).fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(1).body.at(1).trim(), 'message_' + signal + '('+signal+'_' + property+'))' );
+						}else{ 	
+							g1.predicate <- g1.predicate + '&'+ '(guideword=Less => ' + 'par_'+property + '= ' + 
+								opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim().regexReplaceAll(noAttackpara, 'message_' + signal + '('+signal+'_' + property+'))' );
+							for (attribute in opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.signature.ownedAttribute){
+								g1.predicate <- g1.predicate.regexReplaceAll('att_'+attribute.name, 'par_'+attribute.name);
+							}
 							}
 					}
 				}
@@ -127,10 +144,12 @@ lazy rule AttackGuard{ -- need to develop.
 					if (opr.fragment->exists(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)) ) {
 						if (opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim()='att_'+property ){
 							g1.predicate <- g1.predicate + '&' + '(guideword=More => ' + 'par_'+property + ' > '+ 'message_' + signal + '('+signal+'_' + property+'))';
-						}else{ -- need to be completed.
-							--g1.predicate <- g1.predicate + '&'+ '(guideword=More => ' + 'par_'+property + '= ' + 
-								--	opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim().regexReplaceAll(
-									--	opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim(), 'message_' + signal + '('+signal+'_' + property+'))' );
+						}else{ 
+							g1.predicate <- g1.predicate + '&'+ '(guideword=More => ' + 'par_'+property + '= ' + 
+								opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim().regexReplaceAll(noAttackpara, 'message_' + signal + '('+signal+'_' + property+'))' );
+							for (attribute in opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.signature.ownedAttribute){
+								g1.predicate <- g1.predicate.regexReplaceAll('att_'+attribute.name, 'par_'+attribute.name);
+							}
 							}
 					}
 				}
@@ -138,16 +157,17 @@ lazy rule AttackGuard{ -- need to develop.
 					if (opr.fragment->exists(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)) ) {
 						if (opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim()='att_'+property ){
 							g1.predicate <- g1.predicate + '&' + '(guideword=Alter => ' + 'par_'+property + ' : INT';
-						}else{ -- need to be completed.
-							--g1.predicate <- g1.predicate + '&'+ '(guideword=Alter => ' + 'par_'+property + '= ' + 
-								--	opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim().regexReplaceAll(
-									--	opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(1).body.at(1).trim(), 'message_' + signal + '('+signal+'_' + property+'))' );
+						}else{
+							g1.predicate <- g1.predicate + '&'+ '(guideword=Alter => ' + 'par_'+property + '= ' + 
+								opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.argument.at(attCounter).body.at(1).trim().regexReplaceAll(noAttackpara, 'message_' + signal + '('+signal+'_' + property+'))' );
+							for (attribute in opr.fragment->any(frag| frag.oclIsTypeOf(UML!MessageOccurrenceSpecification)).message.signature.ownedAttribute){
+								g1.predicate <- g1.predicate.regexReplaceAll('att_'+attribute.name, 'par_'+attribute.name);
+							}
 							}
 					}
 				}
 			}
 		}
-		--g1.predicate <- g1.predicate + ' & ' + '(attack=1 =>'+'par_'+property +'=999)'+ ' & '+ 'par_' +property + ': INT';
 	}
 }
 
