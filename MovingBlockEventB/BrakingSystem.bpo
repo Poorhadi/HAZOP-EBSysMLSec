@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="2">
+<org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="1"/>
+<org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/Railway/BrakingSystem.bpo|org.eventb.core.poFile#BrakingSystem|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="2">
+<org.eventb.core.poIdentifier name="active" org.eventb.core.type="BOOL"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTALLHYPactivf" org.eventb.core.parentSet="/Railway/BrakingSystem.bpo|org.eventb.core.poFile#BrakingSystem|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0"/>
+<org.eventb.core.poPredicateSet name="EVTALLHYPactivg" org.eventb.core.parentSet="/Railway/BrakingSystem.bpo|org.eventb.core.poFile#BrakingSystem|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+<org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="active=FALSE" org.eventb.core.source="/Railway/BrakingSystem.bum|org.eventb.core.machineFile#BrakingSystem|org.eventb.core.event#_kcUi4RWvEe6fTrtVnbzfWQ|org.eventb.core.guard#_kcVJ8BWvEe6fTrtVnbzfWQ"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTALLHYPactivh" org.eventb.core.parentSet="/Railway/BrakingSystem.bpo|org.eventb.core.poFile#BrakingSystem|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+<org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="active=TRUE" org.eventb.core.source="/Railway/BrakingSystem.bum|org.eventb.core.machineFile#BrakingSystem|org.eventb.core.event#_kcVJ8hWvEe6fTrtVnbzfWQ|org.eventb.core.guard#_kcVxABWvEe6fTrtVnbzfWQ"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTALLHYPactivi" org.eventb.core.parentSet="/Railway/BrakingSystem.bpo|org.eventb.core.poFile#BrakingSystem|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0"/>
+<org.eventb.core.poPredicateSet name="EVTIDENTactivj" org.eventb.core.parentSet="/Railway/BrakingSystem.bpo|org.eventb.core.poFile#BrakingSystem|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
+<org.eventb.core.poIdentifier name="active'" org.eventb.core.type="BOOL"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTALLHYPactivj" org.eventb.core.parentSet="/Railway/BrakingSystem.bpo|org.eventb.core.poFile#BrakingSystem|org.eventb.core.poPredicateSet#EVTIDENTactivj" org.eventb.core.poStamp="0"/>
+<org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/Railway/BrakingSystem.bpo|org.eventb.core.poFile#BrakingSystem|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="2">
+<org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="active∈BOOL" org.eventb.core.source="/Railway/BrakingSystem.bum|org.eventb.core.machineFile#BrakingSystem|org.eventb.core.invariant#_kcTUwBWvEe6fTrtVnbzfWQ"/>
+</org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

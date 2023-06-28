@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="2">
+<org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="1"/>
+<org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/Railway/Odometer.bpo|org.eventb.core.poFile#Odometer|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="2">
+<org.eventb.core.poIdentifier name="Error" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="minSafeFront" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="maxSafeFront" org.eventb.core.type="ℤ"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTIDENTminSafeFronu" org.eventb.core.parentSet="/Railway/Odometer.bpo|org.eventb.core.poFile#Odometer|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+<org.eventb.core.poIdentifier name="distance" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="par_minSafeFront" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="rnd1" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="rnd2" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="maxSafeFront'" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="minSafeFront'" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="par_maxSafeFront" org.eventb.core.type="ℤ"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTALLHYPminSafeFronu" org.eventb.core.parentSet="/Railway/Odometer.bpo|org.eventb.core.poFile#Odometer|org.eventb.core.poPredicateSet#EVTIDENTminSafeFronu" org.eventb.core.poStamp="0">
+<org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="par_minSafeFront=distance − rnd1" org.eventb.core.source="/Railway/Odometer.bum|org.eventb.core.machineFile#Odometer|org.eventb.core.event#__r4EchWvEe6fTrtVnbzfWQ|org.eventb.core.guard#__r5SkhWvEe6fTrtVnbzfWQ"/>
+<org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="par_maxSafeFront=distance+rnd2" org.eventb.core.source="/Railway/Odometer.bum|org.eventb.core.machineFile#Odometer|org.eventb.core.event#__r4EchWvEe6fTrtVnbzfWQ|org.eventb.core.guard#__r5SlBWvEe6fTrtVnbzfWQ"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTALLHYPminSafeFronv" org.eventb.core.parentSet="/Railway/Odometer.bpo|org.eventb.core.poFile#Odometer|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0"/>
+<org.eventb.core.poPredicateSet name="EVTALLHYPminSafeFronw" org.eventb.core.parentSet="/Railway/Odometer.bpo|org.eventb.core.poFile#Odometer|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0"/>
+<org.eventb.core.poPredicateSet name="EVTIDENTminSafeFronx" org.eventb.core.parentSet="/Railway/Odometer.bpo|org.eventb.core.poFile#Odometer|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
+<org.eventb.core.poIdentifier name="Error'" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="maxSafeFront'" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="minSafeFront'" org.eventb.core.type="ℤ"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTALLHYPminSafeFronx" org.eventb.core.parentSet="/Railway/Odometer.bpo|org.eventb.core.poFile#Odometer|org.eventb.core.poPredicateSet#EVTIDENTminSafeFronx" org.eventb.core.poStamp="0"/>
+<org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/Railway/Odometer.bpo|org.eventb.core.poFile#Odometer|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="2">
+<org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="Error∈ℤ" org.eventb.core.source="/Railway/Odometer.bum|org.eventb.core.machineFile#Odometer|org.eventb.core.invariant#__r3dZBWvEe6fTrtVnbzfWQ"/>
+<org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="minSafeFront∈ℤ" org.eventb.core.source="/Railway/Odometer.bum|org.eventb.core.machineFile#Odometer|org.eventb.core.invariant#__r4EcBWvEe6fTrtVnbzfWQ"/>
+<org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="maxSafeFront∈ℤ" org.eventb.core.source="/Railway/Odometer.bum|org.eventb.core.machineFile#Odometer|org.eventb.core.invariant#__r4EcRWvEe6fTrtVnbzfWQ"/>
+</org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

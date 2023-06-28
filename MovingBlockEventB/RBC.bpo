@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="3">
+<org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="1"/>
+<org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/Railway/RBC.bpo|org.eventb.core.poFile#RBC|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="2">
+<org.eventb.core.poIdentifier name="ConnStatus" org.eventb.core.type="BOOL"/>
+<org.eventb.core.poIdentifier name="estimation" org.eventb.core.type="ℤ"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTIDENTestimatioo" org.eventb.core.parentSet="/Railway/RBC.bpo|org.eventb.core.poFile#RBC|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+<org.eventb.core.poIdentifier name="par1" org.eventb.core.type="BOOL"/>
+<org.eventb.core.poIdentifier name="estimation'" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="ConnStatus'" org.eventb.core.type="BOOL"/>
+<org.eventb.core.poIdentifier name="par4" org.eventb.core.type="BOOL"/>
+<org.eventb.core.poIdentifier name="par3" org.eventb.core.type="BOOL"/>
+<org.eventb.core.poIdentifier name="par_estimation" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="par_ConnStatus" org.eventb.core.type="BOOL"/>
+<org.eventb.core.poIdentifier name="par2" org.eventb.core.type="BOOL"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTALLHYPestimatioo" org.eventb.core.parentSet="/Railway/RBC.bpo|org.eventb.core.poFile#RBC|org.eventb.core.poPredicateSet#EVTIDENTestimatioo" org.eventb.core.poStamp="0">
+<org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="par1=TRUE⇒par_ConnStatus=TRUE" org.eventb.core.source="/Railway/RBC.bum|org.eventb.core.machineFile#RBC|org.eventb.core.event#_NPDVkhWwEe6fTrtVnbzfWQ|org.eventb.core.guard#_NPGY4BWwEe6fTrtVnbzfWQ"/>
+<org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="par2=TRUE∧par3=TRUE⇒par_ConnStatus=TRUE" org.eventb.core.source="/Railway/RBC.bum|org.eventb.core.machineFile#RBC|org.eventb.core.event#_NPDVkhWwEe6fTrtVnbzfWQ|org.eventb.core.guard#_NPG_8BWwEe6fTrtVnbzfWQ"/>
+<org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="par2=TRUE∧par4=TRUE⇒par_estimation=estimation" org.eventb.core.source="/Railway/RBC.bum|org.eventb.core.machineFile#RBC|org.eventb.core.event#_NPDVkhWwEe6fTrtVnbzfWQ|org.eventb.core.guard#_NPG_8hWwEe6fTrtVnbzfWQ"/>
+<org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="par2=TRUE∧par4=TRUE⇒par_ConnStatus=FALSE" org.eventb.core.source="/Railway/RBC.bum|org.eventb.core.machineFile#RBC|org.eventb.core.event#_NPDVkhWwEe6fTrtVnbzfWQ|org.eventb.core.guard#_NPG_8xWwEe6fTrtVnbzfWQ"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTALLHYPestimatiop" org.eventb.core.parentSet="/Railway/RBC.bpo|org.eventb.core.poFile#RBC|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0"/>
+<org.eventb.core.poPredicateSet name="EVTALLHYPestimatioq" org.eventb.core.parentSet="/Railway/RBC.bpo|org.eventb.core.poFile#RBC|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0"/>
+<org.eventb.core.poPredicateSet name="EVTALLHYPestimatior" org.eventb.core.parentSet="/Railway/RBC.bpo|org.eventb.core.poFile#RBC|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0"/>
+<org.eventb.core.poPredicateSet name="EVTIDENTestimatios" org.eventb.core.parentSet="/Railway/RBC.bpo|org.eventb.core.poFile#RBC|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="3">
+<org.eventb.core.poIdentifier name="estimation'" org.eventb.core.type="ℤ"/>
+<org.eventb.core.poIdentifier name="ConnStatus'" org.eventb.core.type="BOOL"/>
+</org.eventb.core.poPredicateSet>
+<org.eventb.core.poPredicateSet name="EVTALLHYPestimatios" org.eventb.core.parentSet="/Railway/RBC.bpo|org.eventb.core.poFile#RBC|org.eventb.core.poPredicateSet#EVTIDENTestimatios" org.eventb.core.poStamp="3"/>
+<org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/Railway/RBC.bpo|org.eventb.core.poFile#RBC|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="2">
+<org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="ConnStatus∈BOOL" org.eventb.core.source="/Railway/RBC.bum|org.eventb.core.machineFile#RBC|org.eventb.core.invariant#_NPDVkBWwEe6fTrtVnbzfWQ"/>
+<org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="estimation∈ℤ" org.eventb.core.source="/Railway/RBC.bum|org.eventb.core.machineFile#RBC|org.eventb.core.invariant#_NPDVkRWwEe6fTrtVnbzfWQ"/>
+</org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

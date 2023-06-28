@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+<org.eventb.core.variable name="_kcStsBWvEe6fTrtVnbzfWQ" org.eventb.core.identifier="BrakingSystem_state"/>
+<org.eventb.core.variable name="_kcStsRWvEe6fTrtVnbzfWQ" org.eventb.core.identifier="active"/>
+<org.eventb.core.invariant name="_kcStshWvEe6fTrtVnbzfWQ" org.eventb.core.label="inv1" org.eventb.core.predicate="BrakingSystem_state ∈ BrakingSystem_States"/>
+<org.eventb.core.invariant name="_kcTUwBWvEe6fTrtVnbzfWQ" org.eventb.core.label="inv2" org.eventb.core.predicate="active∈BOOL "/>
+<org.eventb.core.event name="_kcTUwRWvEe6fTrtVnbzfWQ" org.eventb.core.comment="Refines Receiving_BrakingActivation" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="waitingForATP_To_receive">
+<org.eventb.core.parameter name="_kcTUwhWvEe6fTrtVnbzfWQ" org.eventb.core.identifier="activation"/>
+<org.eventb.core.parameter name="_kcT70BWvEe6fTrtVnbzfWQ" org.eventb.core.identifier="par_active"/>
+<org.eventb.core.guard name="_kcT70RWvEe6fTrtVnbzfWQ" org.eventb.core.label="grd1" org.eventb.core.predicate="BrakingSystem_state = waitingForATP"/>
+<org.eventb.core.guard name="_kcT70hWvEe6fTrtVnbzfWQ" org.eventb.core.label="grd2" org.eventb.core.predicate="par_activation = activation "/>
+<org.eventb.core.guard name="_kcT70xWvEe6fTrtVnbzfWQ" org.eventb.core.label="grd3" org.eventb.core.predicate="par_active=activation"/>
+<org.eventb.core.action name="_kcT71BWvEe6fTrtVnbzfWQ" org.eventb.core.assignment="BrakingSystem_state ≔ receive" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="_kcUi4BWvEe6fTrtVnbzfWQ" org.eventb.core.assignment="active ≔ par_active" org.eventb.core.label="act2"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="_kcUi4RWvEe6fTrtVnbzfWQ" org.eventb.core.comment="Refines Sending_ModelingPurposeByBRK" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="receive_To_disengaged">
+<org.eventb.core.guard name="_kcUi4hWvEe6fTrtVnbzfWQ" org.eventb.core.label="grd1" org.eventb.core.predicate="BrakingSystem_state = receive"/>
+<org.eventb.core.guard name="_kcVJ8BWvEe6fTrtVnbzfWQ" org.eventb.core.label="grd2" org.eventb.core.predicate="active = FALSE"/>
+<org.eventb.core.action name="_kcVJ8RWvEe6fTrtVnbzfWQ" org.eventb.core.assignment="BrakingSystem_state ≔ disengaged" org.eventb.core.label="act1"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="_kcVJ8hWvEe6fTrtVnbzfWQ" org.eventb.core.comment="Refines Sending_BrakingTriggered" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="receive_To_activated">
+<org.eventb.core.guard name="_kcVJ8xWvEe6fTrtVnbzfWQ" org.eventb.core.label="grd1" org.eventb.core.predicate="BrakingSystem_state = receive"/>
+<org.eventb.core.guard name="_kcVxABWvEe6fTrtVnbzfWQ" org.eventb.core.label="grd2" org.eventb.core.predicate="active = TRUE"/>
+<org.eventb.core.action name="_kcVxARWvEe6fTrtVnbzfWQ" org.eventb.core.assignment="BrakingSystem_state ≔ activated" org.eventb.core.label="act1"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="_kcVxAhWvEe6fTrtVnbzfWQ" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="disengaged_To_waitingForATP">
+<org.eventb.core.guard name="_kcWYEBWvEe6fTrtVnbzfWQ" org.eventb.core.label="grd1" org.eventb.core.predicate="BrakingSystem_state = disengaged"/>
+<org.eventb.core.action name="_kcWYERWvEe6fTrtVnbzfWQ" org.eventb.core.assignment="BrakingSystem_state ≔ waitingForATP" org.eventb.core.label="act1"/>
+</org.eventb.core.event>
+<org.eventb.core.event name="_kcWYEhWvEe6fTrtVnbzfWQ" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
+<org.eventb.core.action name="_kcWYExWvEe6fTrtVnbzfWQ" org.eventb.core.assignment="BrakingSystem_state  ≔ waitingForATP" org.eventb.core.label="act1"/>
+<org.eventb.core.action name="_kcW_IBWvEe6fTrtVnbzfWQ" org.eventb.core.assignment="active≔FALSE" org.eventb.core.label="act2"/>
+</org.eventb.core.event>
+</org.eventb.core.machineFile>
